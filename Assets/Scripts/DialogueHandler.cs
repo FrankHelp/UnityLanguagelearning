@@ -203,7 +203,7 @@ public class DialogueHandler : MonoBehaviour
         if (!isRecording)
         {
             // Starte Aufnahme
-            recordedClip = Microphone.Start(null, false, 60, 16000); // 60 Sekunden, 16 kHz
+            recordedClip = Microphone.Start(null, false, 30, 16000); // 30 Sekunden, 16 kHz
             // recordingButton.GetComponentInChildren<Text>().text = "Stop Recording";
         }
         else

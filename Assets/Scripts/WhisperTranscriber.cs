@@ -17,7 +17,7 @@ public class WhisperTranscriber : MonoBehaviour
 
     public void Initialize(string serverURL)
     {
-        this.serverUrl = serverURL + ":65432/transcribe";
+        this.serverUrl = serverURL+":8150/frank/transcribe";
     }
 
     public void SendAudioRequest(byte[] audioData)

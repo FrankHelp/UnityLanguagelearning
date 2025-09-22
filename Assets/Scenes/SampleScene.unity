@@ -2921,11 +2921,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 42ae3de1dd9bef33f918eba4f442c0d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  serverURL: http://134.100.14.194
   voiceRecordButton: {fileID: 6958136735384808676, guid: c348712bda248c246b8c49b3db54643f, type: 3}
   audioSource: {fileID: 1372398700}
   scrollRect: {fileID: 1288921463}
   scrollText: {fileID: 1138933603}
-  serverURL: http://192.168.2.196
   rightController: {fileID: 834001474}
 --- !u!114 &782628378
 MonoBehaviour:
@@ -5215,8 +5215,8 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1465844881}
   m_LocalRotation: {x: 0, y: -0.258819, z: 0, w: 0.9659259}
-  m_LocalPosition: {x: 0, y: 0, z: 0.07}
-  m_LocalScale: {x: 0.001, y: 0.001, z: 0.001}
+  m_LocalPosition: {x: 0, y: 0, z: 30}
+  m_LocalScale: {x: 0, y: 0, z: 0.001}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 618953417}
