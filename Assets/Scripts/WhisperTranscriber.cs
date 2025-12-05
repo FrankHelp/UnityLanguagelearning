@@ -14,10 +14,17 @@ public class WhisperTranscriber : MonoBehaviour
     // Öffentliche Events, die andere Klassen abonnieren können
     public event TranscriptionEventHandler OnTranscriptionSuccess;
     public event TranscriptionErrorHandler OnTranscriptionError;
+    private int currentStatus;
 
-    public void Initialize(string serverURL)
+    public void Initialize(string serverURL, int status)
     {
         this.serverUrl = serverURL+":8150/frank/transcribe";
+        // this.serverUrl = serverURL + ":65432/transcribe";
+        this.currentStatus = status;
+        if(status == 0 || status == 3)
+        {
+            this.serverUrl += "Mono";
+        }
     }
 
     public void SendAudioRequest(byte[] audioData)
@@ -30,6 +37,10 @@ public class WhisperTranscriber : MonoBehaviour
         // HTTP-Request vorbereiten
         WWWForm form = new WWWForm();
         form.AddBinaryData("file", audioData, "audio.wav", "audio/wav");
+        if (currentStatus == 0 || currentStatus == 3)
+        {
+            form.AddField("lang", "fr");
+        }
 
         using (UnityWebRequest www = UnityWebRequest.Post(serverUrl, form))
         {

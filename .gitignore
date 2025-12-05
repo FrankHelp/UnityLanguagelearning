@@ -100,4 +100,5 @@ InitTestScene*.unity*
 
 # Unity Package Files
 *.unitypackage
-Assets/Scripts/OpenAIChatGPT.cs
+/Assets/Scenes/ParisFinal2.glb
+/Skybox/Assets/ParisFinal.glb

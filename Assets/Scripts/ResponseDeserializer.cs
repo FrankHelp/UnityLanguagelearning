@@ -56,6 +56,7 @@ namespace ChatGPTIntegration
     {
         public string summary;
         public string level;
+        public string item;
     }
 
     [Serializable]

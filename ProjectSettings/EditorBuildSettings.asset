@@ -4,7 +4,19 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/InitScene.unity
+    guid: 3f415c250577eb6fe88e7f235aec753d
+  - enabled: 1
+    path: Assets/Scenes/FloatingScene.unity
+    guid: 9fc0d4010bbf28b4594072e72b8655ab
+  - enabled: 1
+    path: Assets/Scenes/TrainScene.unity
+    guid: d58e42eea418e00aa83c5df909258bc2
+  - enabled: 1
+    path: Assets/Scenes/ParisScene.unity
+    guid: 1313d7b358795b50899d3759834da89e
   m_configObjects:
     com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 430a8d75abad0f824b8151d48fde1688, type: 2}
     com.unity.xr.openxr.settings4: {fileID: 11400000, guid: 1ad9a6c932412478e9aa49c91962f83a, type: 2}

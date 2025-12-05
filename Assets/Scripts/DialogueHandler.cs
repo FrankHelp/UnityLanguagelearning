@@ -13,8 +13,7 @@ public class DialogueHandler : MonoBehaviour
 {
     private List<ChatMessage> messages;
     // [SerializeField] public Button recordingButton;
-    [SerializeField]
-    public string serverURL = "http://192.168.178.138";
+    private string serverURL = "http://134.100.14.194";
     public InputActionReference voiceRecordButton;
     [SerializeField]
     public AudioSource audioSource;
@@ -24,10 +23,13 @@ public class DialogueHandler : MonoBehaviour
     public GameObject scrollText;
     [SerializeField]
     public XRBaseController rightController;
+    [SerializeField]
+    public ObjectSpawner objectSpawner;
 
     private OpenAIChatGPT chatGPT;
     private TTSService tts;
     private WhisperTranscriber _transcriber;
+    
 
     private UIHandler _UI;
 
@@ -35,6 +37,7 @@ public class DialogueHandler : MonoBehaviour
     private AudioClip recordedClip;
 
     private PromptHandler prompts;
+    private int currentStatus;
     
 
     void OnEnable()
@@ -43,7 +46,8 @@ public class DialogueHandler : MonoBehaviour
         {
             _transcriber = gameObject.AddComponent<WhisperTranscriber>();
         }
-        _transcriber.Initialize(serverURL);
+        currentStatus = SessionManager.GetInt("GameStatus", 0);
+        _transcriber.Initialize(serverURL, currentStatus);
         // Events abonnieren
         _transcriber.OnTranscriptionSuccess += HandleTranscriptionSuccess;
         _transcriber.OnTranscriptionError += HandleTranscriptionError;
@@ -56,7 +60,47 @@ public class DialogueHandler : MonoBehaviour
         _transcriber.OnTranscriptionError -= HandleTranscriptionError;
     }
 
-    void Start()
+    void OnDestroy()
+    {
+        StartCoroutine(UploadMessages());
+    }
+    IEnumerator UploadMessages()
+    {
+        string jsonMessages = JsonConvert.SerializeObject(messages);
+        
+        // Synchron warten bis Upload fertig ist
+        yield return StartCoroutine(UploadToFirebase(jsonMessages));
+        
+        // Erst danach wird das GameObject zerstört
+    }
+
+    IEnumerator UploadToFirebase(string jsonData)
+    {
+        // string url = "https://batranscripts.firebaseio.com/chatlogs.json";
+        int id = SessionManager.GetInt("UserID");
+        currentStatus = SessionManager.GetInt("GameStatus", 0);
+        // int id = 42;
+        string url = $"https://batranscripts-default-rtdb.europe-west1.firebasedatabase.app/{id}/{currentStatus}/chats.json";
+        // EINFACHE VARIANTE ohne CreateRequest:
+        UnityWebRequest request = new UnityWebRequest(url, "PUT");
+        byte[] bodyRaw = System.Text.Encoding.UTF8.GetBytes(jsonData);
+        request.uploadHandler = new UploadHandlerRaw(bodyRaw);
+        request.downloadHandler = new DownloadHandlerBuffer();
+        request.SetRequestHeader("Content-Type", "application/json");
+        
+        yield return request.SendWebRequest();
+        
+        if (request.result != UnityWebRequest.Result.Success)
+        {
+            Debug.LogError($"Error: {request.error}");
+        }
+        else
+        {
+            Debug.Log("Upload successful!");
+        }
+    }
+
+    void Awake()
     {
         tts = gameObject.AddComponent<TTSService>();
         tts.Initialize(audioSource, serverURL);
@@ -75,6 +119,7 @@ public class DialogueHandler : MonoBehaviour
 
         // Erstelle das Dictionary mit den Nachrichten
         messages = new List<ChatMessage>();
+        messages.Add(new ChatMessage("system", prompts.GetCurrentSystemPrompt()));
 
         // recordingButton.onClick.AddListener(ToggleRecording);
         voiceRecordButton.action.started += ButtonWasPressed;
@@ -119,13 +164,11 @@ public class DialogueHandler : MonoBehaviour
     {
         if (userPrompt == null)
         {
-            messages.Add(new ChatMessage("system", prompts.GetCurrentSystemPrompt()));
-            messages.Add(new ChatMessage("user", prompts.GetCurrentUserPrompt()));
-            Debug.Log("Promptswitch!");
+            // messages.Add(new ChatMessage("system", prompts.GetCurrentSystemPrompt()));
+            // messages.Add(new ChatMessage("user", prompts.GetCurrentUserPrompt()));
         }
         else
         {
-            messages.Add(new ChatMessage("system", prompts.GetCurrentSystemPrompt()));
             messages.Add(new ChatMessage("user", userPrompt));
         }
         VRDebugConsole.Log("An GPT senden...");
@@ -164,6 +207,7 @@ public class DialogueHandler : MonoBehaviour
                 }
             }
             messages.Add(new ChatMessage("assistant", full_response));
+            StartCoroutine(UploadMessages());
             
             // VRDebugConsole.Log("Antwort bekommen: \n"+ full_response);
             _UI.displayMessage(0, full_response);
@@ -189,11 +233,28 @@ public class DialogueHandler : MonoBehaviour
                         sendMessage(null);
                     }
                 }
+                if(toolCall.function.name == "materialize")
+                {
+                    var arguments = ResponseDeserializer.GetToolCallArguments(toolCall);
+                    messages.Add(new ChatMessage("system", arguments.item + " was spawned in."));
+                    if(parts == null)
+                    {
+                        sendMessage(null);
+                    }
+                    objectSpawner.SpawnObject(arguments.item);
+                }
                 Debug.Log($"Tool Call: {toolCall.function.name}, Arguments: {toolCall.function.arguments}");
-                VRDebugConsole.Log($"Tool Call: {toolCall.function.name}, Arguments: {toolCall.function.arguments}");
+                // VRDebugConsole.Log($"Tool Call: {toolCall.function.name}, Arguments: {toolCall.function.arguments}");
                 
                 
             }
+        }
+
+        // Falls ChatGPT leer Antwortet (Bug)
+        if (toolCalls == null && parts == null)
+        {
+            // VRDebugConsole.Log("Leere Antwort von GPT, sende nochmal...");
+            sendMessage(null);
         }
         // -----------------------------------
     }
@@ -228,6 +289,8 @@ public class DialogueHandler : MonoBehaviour
     private void HandleTranscriptionSuccess(string result)
     {
         Debug.Log("Transkription erhalten: " + result);
+        Dictionary<string, string> dict = JsonConvert.DeserializeObject<Dictionary<string, string>>(result);
+        result = dict["text"];
         _UI.displayMessage(1, result);
         sendMessage(result);
     }

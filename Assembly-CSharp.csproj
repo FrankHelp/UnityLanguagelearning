@@ -59,32 +59,71 @@
     <UnityVersion>2022.3.62f1</UnityVersion>
   </PropertyGroup>
   <ItemGroup>
-    <Analyzer Include="/home/student/.vscode/extensions/visualstudiotoolsforunity.vstuc-1.1.3/Analyzers/Microsoft.Unity.Analyzers.dll" />
     <Analyzer Include="/home/student/Unity/Hub/Editor/2022.3.62f1/Editor/Data/Tools/Unity.SourceGenerators/Unity.SourceGenerators.dll" />
     <Analyzer Include="/home/student/Unity/Hub/Editor/2022.3.62f1/Editor/Data/Tools/Unity.SourceGenerators/Unity.Properties.SourceGenerator.dll" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets/Scripts/TTSService.cs" />
     <Compile Include="Assets/Scripts/ControllerInputListener.cs" />
+    <Compile Include="Assets/Scripts/SubwayMovement.cs" />
     <Compile Include="Assets/Scripts/WavUtility.cs" />
+    <Compile Include="Assets/Scripts/VoiceRecorderTutorial.cs" />
     <Compile Include="Assets/Scripts/WhisperClient.cs" />
+    <Compile Include="Assets/Scripts/Einführung.cs" />
+    <Compile Include="Assets/Scripts/TestSpawnController.cs" />
+    <Compile Include="Assets/Scripts/TrainSceneManager.cs" />
     <Compile Include="Assets/Scripts/PromptHandler.cs" />
     <Compile Include="Assets/Scripts/UIHandler.cs" />
     <Compile Include="Assets/Scripts/RecordFeedback.cs" />
     <Compile Include="Assets/Scripts/ResponseDeserializer.cs" />
+    <Compile Include="Assets/TutorialInfo/Scripts/Readme.cs" />
+    <Compile Include="Assets/Scripts/SceneTimer.cs" />
     <Compile Include="Assets/Animations/RealisticSmile.cs" />
     <Compile Include="Assets/Scripts/DialogueHandler.cs" />
     <Compile Include="Assets/Scripts/ChatMessage.cs" />
     <Compile Include="Assets/Scripts/OpenAIChatGPT.cs" />
+    <Compile Include="Assets/Scripts/LevelLoader.cs" />
     <Compile Include="Assets/Animations/EyeBlinker.cs" />
     <Compile Include="Assets/Scripts/VRDebugConsole.cs" />
     <Compile Include="Assets/Scripts/Elevenlabssocket.cs" />
+    <Compile Include="Assets/Scripts/VRKeyboard.cs" />
     <Compile Include="Assets/Animations/HeadLookAtIK.cs" />
+    <Compile Include="Assets/Scripts/VRKeyboardManager.cs" />
+    <Compile Include="Assets/Scripts/ObjectSpawner.cs" />
+    <Compile Include="Assets/Scripts/InitManager.cs" />
+    <Compile Include="Assets/Scripts/BackgroundMusic.cs" />
     <Compile Include="Assets/Scripts/WhisperTranscriber.cs" />
+    <Compile Include="Assets/Scripts/SessionManager.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Assets/TextMesh Pro/Shaders/TMPro.cginc" />
+    <None Include="Assets/TextMesh Pro/Shaders/TMP_SDF-Mobile Overlay.shader" />
+    <None Include="Assets/TextMesh Pro/Shaders/TMP_Bitmap.shader" />
     <None Include="Assets/Fantasy Skybox FREE/Readme.txt" />
+    <None Include="Assets/TextMesh Pro/Shaders/TMPro_Mobile.cginc" />
+    <None Include="Assets/TextMesh Pro/Shaders/TMP_SDF SSD.shader" />
     <None Include="Assets/Fantasy Skybox FREE/ReleaseNotes.txt" />
+    <None Include="Assets/TextMesh Pro/Shaders/TMP_SDF-Surface-Mobile.shader" />
+    <None Include="Assets/Lana Studio/Hyper Casual FX/Demo/Readme.txt" />
+    <None Include="Assets/TextMesh Pro/Shaders/TMP_SDF-Surface.shader" />
+    <None Include="Assets/TextMesh Pro/Sprites/EmojiOne Attribution.txt" />
+    <None Include="Assets/TextMesh Pro/Shaders/TMP_Bitmap-Custom-Atlas.shader" />
+    <None Include="Assets/TextMesh Pro/Shaders/TMP_SDF.shader" />
+    <None Include="Assets/TextMesh Pro/Shaders/TMP_SDF-Mobile SSD.shader" />
+    <None Include="Assets/TextMesh Pro/Resources/LineBreaking Leading Characters.txt" />
+    <None Include="Assets/TextMesh Pro/Shaders/TMPro_Properties.cginc" />
+    <None Include="Assets/TextMesh Pro/Shaders/TMPro_Surface.cginc" />
+    <None Include="Assets/Wireframe/Hologram.shader" />
+    <None Include="Assets/Wireframe/Wireframe.shader" />
+    <None Include="Assets/TextMesh Pro/Resources/LineBreaking Following Characters.txt" />
+    <None Include="Assets/ThreeBox/Match3D Object Pack - Fruits and Vegetables/Readme.txt" />
+    <None Include="Assets/TextMesh Pro/Shaders/TMP_SDF-Mobile Masking.shader" />
+    <None Include="Assets/Ornamental Flower Set/Shaders/Transparent-BumpSpecNoCull.shader" />
+    <None Include="Assets/TextMesh Pro/Shaders/TMP_SDF Overlay.shader" />
+    <None Include="Assets/TextMesh Pro/Shaders/TMP_Bitmap-Mobile.shader" />
+    <None Include="Assets/TextMesh Pro/Fonts/LiberationSans - OFL.txt" />
+    <None Include="Assets/TextMesh Pro/Shaders/TMP_SDF-Mobile.shader" />
+    <None Include="Assets/TextMesh Pro/Shaders/TMP_Sprite.shader" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
