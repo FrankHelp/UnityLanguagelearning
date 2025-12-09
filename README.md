@@ -1,10 +1,11 @@
-# Unity Project for Languagelearning
-The Project source code for my Bachelors Thesis 'Developing Conversational Intelligence for Languagelearning in Virtual Reality'.
+# Study Version
+
+To replicate this study
+- enter a valid OpenAI API Key in Assets/Scripts/OpenAIChatGPT.cs
+- enter the IP Adress to the Backend Server in Assets/Scripts/DialogHandler.cs
 
 
-#### Setup
-First, setup and run whisper_server.py in my Languagelearning repository. The server is responsible for Whisper Speech Recoginition and Piper-tts Text to Speech.
 
-Next, in the Unity Project, select the XR Rig, and in the Inspector under 'dialogHandler' insert the IP Adress of the python server.
+Open the InitScene in Assets/Scenes in your Project Window
 
-Build and Run on your Meta headset.
+Build and Run (Make sure all scenes are loaded)!

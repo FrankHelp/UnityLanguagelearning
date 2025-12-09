@@ -18,8 +18,7 @@ public class WhisperTranscriber : MonoBehaviour
 
     public void Initialize(string serverURL, int status)
     {
-        this.serverUrl = serverURL+":8150/frank/transcribe";
-        // this.serverUrl = serverURL + ":65432/transcribe";
+        this.serverUrl = serverURL+"/transcribe";
         this.currentStatus = status;
         if(status == 0 || status == 3)
         {

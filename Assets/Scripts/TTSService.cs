@@ -13,7 +13,7 @@ public class TTSService : MonoBehaviour
     public void Initialize(AudioSource audioSource, string serverURL)
     {
         this.audioSource = audioSource;
-        this.serverUrl = serverURL + ":8150/frank/synthesize";
+        this.serverUrl = serverURL + "/synthesize";
         // this.serverUrl = serverURL + ":65432/synthesize";
     }
     void Start()

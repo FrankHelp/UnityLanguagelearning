@@ -13,7 +13,7 @@ public class DialogueHandler : MonoBehaviour
 {
     private List<ChatMessage> messages;
     // [SerializeField] public Button recordingButton;
-    private string serverURL = "http://134.100.14.194";
+    private string serverURL = "http://192.100.14.194:65432";
     public InputActionReference voiceRecordButton;
     [SerializeField]
     public AudioSource audioSource;
