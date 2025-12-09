@@ -59,7 +59,7 @@ public class DialogueController : MonoBehaviour
         dialogueState = new DialogueState(
             systemPrompt: _prompt1
         );
-        chatGPTService.SendMessage(dialogueState.GetMessages());
+        chatGPTService.SendMessage(dialogueState.GetMessages()); // First Message
     }
 
     private void SubscribeToEvents()
@@ -69,9 +69,6 @@ public class DialogueController : MonoBehaviour
         
         chatGPTService.OnGPTResponseReceived += OnGPTResponseReceived;
         chatGPTService.OnGPTError += OnGPTError;
-        
-        // synthesisService.OnSynthesisComplete += OnSynthesisComplete;
-        // synthesisService.OnSynthesisError += OnSynthesisError;
     }
 
     private void OnTranscriptionComplete(string transcribedText)
@@ -80,7 +77,6 @@ public class DialogueController : MonoBehaviour
         chatScrollView.AddUserMessage(transcribedText);
         chatGPTService.SendMessage(dialogueState.GetMessages());
     }
-    // List<Part>, List<ToolCall>
     private void OnGPTResponseReceived(string full_response, List<Part> parts, List<ToolCall> toolCalls)
     {
         dialogueState.AddAssistantMessage(full_response);
@@ -108,11 +104,6 @@ public class DialogueController : MonoBehaviour
         }
     }
 
-    // private void OnSynthesisComplete(AudioClip[] audioClips)
-    // {
-    //     ivaController.PlayResponse(audioClips);
-    // }
-
     private void OnDestroy()
     {
         UnsubscribeFromEvents();
@@ -125,15 +116,12 @@ public class DialogueController : MonoBehaviour
         
         chatGPTService.OnGPTResponseReceived -= OnGPTResponseReceived;
         chatGPTService.OnGPTError -= OnGPTError;
-        
-        // synthesisService.OnSynthesisComplete -= OnSynthesisComplete;
-        // synthesisService.OnSynthesisError -= OnSynthesisError;
     }
 
     public void startRecording()
     {
         
-        recordedClip = Microphone.Start(null, false, 30, 16000); // 30 Sekunden, 16 kHz
+        recordedClip = Microphone.Start(null, false, 30, 16000); 
     }
 
     public void stopRecording()
@@ -155,9 +143,4 @@ public class DialogueController : MonoBehaviour
         Debug.LogError("GPT Error: " + error);
         chatScrollView.AddAssistantMessage("Entschuldiung, ein Fehler ist aufgetreten: " + error);
     }
-    // private void OnSynthesisError(string error)
-    // {
-    //     Debug.LogError("Synthesis Error: " + error);
-    //     chatScrollView.AddAssistantMessage("Entschuldiung, ein Fehler ist aufgetreten: " + error);
-    // }
 }

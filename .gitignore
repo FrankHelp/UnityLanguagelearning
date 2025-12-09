@@ -101,3 +101,6 @@ InitTestScene*.unity*
 # Unity Package Files
 *.unitypackage
 Assets/Scripts/Config/Config.cs
+Assets/Scripts/Config/Config.cs.meta
+Assets/Scripts/Config/Config.asset
+Assets/Scripts/Config/Config.asset.meta
