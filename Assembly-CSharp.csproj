@@ -59,32 +59,38 @@
     <UnityVersion>2022.3.62f1</UnityVersion>
   </PropertyGroup>
   <ItemGroup>
-    <Analyzer Include="/home/student/.vscode/extensions/visualstudiotoolsforunity.vstuc-1.1.3/Analyzers/Microsoft.Unity.Analyzers.dll" />
     <Analyzer Include="/home/student/Unity/Hub/Editor/2022.3.62f1/Editor/Data/Tools/Unity.SourceGenerators/Unity.SourceGenerators.dll" />
     <Analyzer Include="/home/student/Unity/Hub/Editor/2022.3.62f1/Editor/Data/Tools/Unity.SourceGenerators/Unity.Properties.SourceGenerator.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets/Scripts/TTSService.cs" />
-    <Compile Include="Assets/Scripts/ControllerInputListener.cs" />
-    <Compile Include="Assets/Scripts/WavUtility.cs" />
-    <Compile Include="Assets/Scripts/WhisperClient.cs" />
-    <Compile Include="Assets/Scripts/PromptHandler.cs" />
-    <Compile Include="Assets/Scripts/UIHandler.cs" />
-    <Compile Include="Assets/Scripts/RecordFeedback.cs" />
-    <Compile Include="Assets/Scripts/ResponseDeserializer.cs" />
-    <Compile Include="Assets/Animations/RealisticSmile.cs" />
-    <Compile Include="Assets/Scripts/DialogueHandler.cs" />
-    <Compile Include="Assets/Scripts/ChatMessage.cs" />
-    <Compile Include="Assets/Scripts/OpenAIChatGPT.cs" />
-    <Compile Include="Assets/Animations/EyeBlinker.cs" />
-    <Compile Include="Assets/Scripts/VRDebugConsole.cs" />
-    <Compile Include="Assets/Scripts/Elevenlabssocket.cs" />
-    <Compile Include="Assets/Animations/HeadLookAtIK.cs" />
-    <Compile Include="Assets/Scripts/WhisperTranscriber.cs" />
+    <Compile Include="Assets/Scripts/View/Environment/BackgroundMusic.cs" />
+    <Compile Include="Assets/Scripts/Model/Network/SynthesisService.cs" />
+    <Compile Include="Assets/Scripts/Utils/CoroutineRunner.cs" />
+    <Compile Include="Assets/Scripts/View/IVA/IVAView.cs" />
+    <Compile Include="Assets/Scripts/Model/IVA/EyeMovementModel.cs" />
+    <Compile Include="Assets/Scripts/Config/Config.cs" />
+    <Compile Include="Assets/Scripts/View/UI/SpeechButtonIndicator.cs" />
+    <Compile Include="Assets/Scripts/Model/Network/ChatGPTService.cs" />
+    <Compile Include="Assets/Scripts/Controller/InputController.cs" />
+    <Compile Include="Assets/Scripts/Model/Dialogue/DialogueState.cs" />
+    <Compile Include="Assets/Scripts/Model/Network/BackendResponseModels.cs" />
+    <Compile Include="Assets/Scripts/Model/Network/TranscriptionService.cs" />
+    <Compile Include="Assets/Scripts/View/Environment/CafeSceneController.cs" />
+    <Compile Include="Assets/Scripts/View/Environment/PrefabSpawner.cs" />
+    <Compile Include="Assets/Scripts/Controller/IVAController.cs" />
+    <Compile Include="Assets/Scripts/Controller/SceneController.cs" />
+    <Compile Include="Assets/Scripts/Model/IVA/HeadMovementModel.cs" />
+    <Compile Include="Assets/Scripts/Model/Dialogue/ChatMessage.cs" />
+    <Compile Include="Assets/Scripts/View/UI/ChatScrollView.cs" />
+    <Compile Include="Assets/Scripts/Utils/WavUtility.cs" />
+    <Compile Include="Assets/Scripts/Utils/JSONParser.cs" />
+    <Compile Include="Assets/Scripts/Controller/DialogueController.cs" />
+    <Compile Include="Assets/Scripts/Model/IVA/SmileModel.cs" />
+    <Compile Include="Assets/Scripts/Config/ConfigTEMPLATE.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Assets/Fantasy Skybox FREE/Readme.txt" />
-    <None Include="Assets/Fantasy Skybox FREE/ReleaseNotes.txt" />
+    <None Include="Assets/_ThirdParty/Lana Studio/Hyper Casual FX/Demo/Readme.txt" />
+    <None Include="Assets/_ThirdParty/ThreeBox/Match3D Object Pack - Fruits and Vegetables/Readme.txt" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

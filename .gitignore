@@ -100,4 +100,4 @@ InitTestScene*.unity*
 
 # Unity Package Files
 *.unitypackage
-Assets/Scripts/OpenAIChatGPT.cs
+Assets/Scripts/Config/Config.cs
